@@ -23,6 +23,7 @@
       justify-content: flex-start;
       overflow-x: hidden;
       padding-bottom: 100px;
+      transition: opacity 0.4s ease;
     }
 
     header {
@@ -66,6 +67,7 @@
       overflow: hidden;
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
       transition: all 0.4s ease;
+      cursor: pointer;
     }
 
     .card::before {
@@ -106,25 +108,21 @@
       line-height: 1.4em;
     }
 
-    /* Styled link that looks like your button */
-    .card .btn-link {
-      display: inline-block;
+    .card button {
       background: linear-gradient(90deg, #00eaff, #00ffa3);
       color: #001019;
       font-weight: 700;
       padding: 10px 25px;
+      border: none;
       border-radius: 30px;
-      text-decoration: none;
       cursor: pointer;
       font-size: 1rem;
       transition: all 0.3s ease;
     }
 
-    .card .btn-link:hover,
-    .card .btn-link:focus {
+    .card button:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-      outline: none;
     }
 
     .suggestions-box {
@@ -184,6 +182,13 @@
       font-size: 0.9rem;
       text-align: center;
     }
+
+    /* Mobile responsive */
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -194,18 +199,16 @@
   </header>
 
   <section class="cards">
-    <div class="card">
+    <div class="card" onclick="openLink('https://navionix.github.io/tech/webgames.html')">
       <h2>Web Games</h2>
       <p>Play instantly from your browser — no installs needed! Dive into fun, fast, and futuristic web-based adventures.</p>
-      <!-- changed to anchor link for robust navigation -->
-      <a class="btn-link" href="https://navionix.github.io/tech/webgames.html" rel="noopener">Play Now</a>
+      <button>Play Now</button>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openLink('https://navionix.github.io/tech/commingsoon.html')">
       <h2>Android Games</h2>
       <p>Download thrilling Android games and experience entertainment at your fingertips. Powered by Navionix creativity.</p>
-      <!-- changed to anchor link for robust navigation -->
-      <a class="btn-link" href="https://navionix.github.io/tech/commingsoon.html" rel="noopener">Explore</a>
+      <button>Explore</button>
     </div>
   </section>
 
@@ -225,7 +228,15 @@
   </footer>
 
   <script>
-    // Google Sheets form submit (unchanged)
+    // Redirection with fade animation
+    function openLink(url) {
+      document.body.style.opacity = "0.6";
+      setTimeout(() => {
+        window.location.href = url;
+      }, 300);
+    }
+
+    // Google Sheet form submission
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyeUTqLfpY49Q7UaX-tigxGEhAafXsiXMjojjTQJn4KLPyVT9Dx4qj3B7fsoy0pA5Zo/exec';
     const form = document.forms['submit-to-google-sheet'];
     const msg = document.getElementById('msg');
@@ -241,25 +252,6 @@
         .catch(error => {
           msg.innerHTML = "❌ Something went wrong. Try again!";
         });
-    });
-
-    // Fallback: make sure links navigate (handles rare cases where default navigation might be blocked)
-    document.querySelectorAll('.btn-link').forEach(a => {
-      a.addEventListener('click', function (e) {
-        // if ctrl/meta clicked or target new tab, let it be normal
-        if (e.defaultPrevented) return;
-        // small timeout fallback to force navigation if browser blocks default for any reason
-        setTimeout(() => {
-          if (location.href === location.href) { // noop check; we just force assign
-            try {
-              window.location.href = this.href;
-            } catch (err) {
-              // silent fallback
-              window.location.assign(this.href);
-            }
-          }
-        }, 50);
-      });
     });
   </script>
 
