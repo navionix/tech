@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aman Portal | Navionix Games</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #040015, #000010 80%);
+      color: #fff;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Floating background particles */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #00ffe0 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 8s infinite ease-in-out;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0.3;
+      }
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #00ffff, #ff00c8, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+      animation: glow 3s infinite alternate;
+    }
+
+    .subtitle {
+      color: #a0b3d1;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(90deg, #00eaff, #00ffa3);
+      color: #001019;
+      font-weight: 600;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 900px;
+      padding: 20px;
+      z-index: 1;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(20, 10, 40, 0.9), rgba(10, 30, 60, 0.9));
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 30px 20px;
+      width: 320px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.3);
+      border-color: rgba(0, 255, 255, 0.5);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      background: linear-gradient(90deg, #00eaff, #ff00b7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #b8c6e2;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      line-height: 1.5em;
+    }
+
+    .card button {
+      background: linear-gradient(90deg, #00eaff, #00ffa3);
+      color: #001019;
+      font-weight: 700;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .card button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #8ea8d4;
+      z-index: 1;
+    }
+
+    .navionix-btn {
+      margin-top: 8px;
+      display: inline-block;
+      background: linear-gradient(90deg, #ff00c8, #00ffff);
+      color: #001019;
+      font-weight: 700;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .navionix-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ffe0; }
+      to { text-shadow: 0 0 25px #ff00e0; }
+    }
+
+    /* 🌐 Mobile optimization */
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+        padding: 25px 15px;
+      }
+      .logo {
+        font-size: 2rem;
+      }
+      .subtitle {
+        font-size: 0.9rem;
+      }
+      .back-btn {
+        top: 10px;
+        left: 10px;
+        padding: 6px 14px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="particles">
+    <div class="particle" style="left:10%; animation-delay:0s;"></div>
+    <div class="particle" style="left:30%; animation-delay:1s;"></div>
+    <div class="particle" style="left:50%; animation-delay:2s;"></div>
+    <div class="particle" style="left:70%; animation-delay:3s;"></div>
+    <div class="particle" style="left:90%; animation-delay:4s;"></div>
+    <div class="particle" style="left:20%; animation-delay:5s;"></div>
+    <div class="particle" style="left:80%; animation-delay:6s;"></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Navionix</a>
+
+  <header>
+    <h1 class="logo">Aman Portal</h1>
+    <p class="subtitle">Adventure Begins with Aman</p>
+  </header>
+
+  <section class="cards">
+
+    <!-- Flappy Aman -->
+    <div class="card">
+      <h2>Flappy Aman</h2>
+      <p>Soar high and dodge obstacles in this thrilling clone of the legendary Flappy Bird — simple, fast, and addictively fun!</p>
+      <button onclick="window.location.href='https://example.com/flappyaman'">Play Now</button>
+    </div>
+
+    <!-- Aman the Warrior -->
+    <div class="card">
+      <h2>Aman the Warrior</h2>
+      <p>Step into the battlefield as Aman the Warrior — a brave hero on a platform adventure filled with action, strategy, and glory.</p>
+      <button onclick="window.location.href='https://example.com/amanwarrior'">Play Now</button>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2025 Aman Portal</p>
+    <a class="navionix-btn" href="index.html">Created by Navionix</a>
+  </footer>
+
+</body>
+</html>
