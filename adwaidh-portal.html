@@ -16,13 +16,14 @@
     body {
       background: radial-gradient(circle at center, #040015, #000010 80%);
       color: #fff;
-      overflow: hidden;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
+      overflow-x: hidden;
+      padding-bottom: 60px;
     }
 
     /* Floating background particles */
@@ -62,8 +63,10 @@
 
     header {
       text-align: center;
+      margin-top: 80px;
       margin-bottom: 40px;
       z-index: 1;
+      padding: 0 20px;
     }
 
     .logo {
@@ -75,6 +78,7 @@
       letter-spacing: 2px;
       text-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
       animation: glow 3s infinite alternate;
+      word-break: break-word;
     }
 
     .subtitle {
@@ -108,7 +112,9 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
       gap: 30px;
+      width: 100%;
       max-width: 900px;
       padding: 20px;
       z-index: 1;
@@ -171,6 +177,7 @@
       font-size: 0.9rem;
       color: #8ea8d4;
       z-index: 1;
+      padding: 0 20px;
     }
 
     .navionix-btn {
@@ -200,12 +207,22 @@
 
     /* 🌐 Mobile optimization */
     @media (max-width: 600px) {
+      header {
+        margin-top: 100px;
+        margin-bottom: 30px;
+      }
       .card {
         width: 90%;
         padding: 25px 15px;
       }
+      .cards {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
       .logo {
-        font-size: 2rem;
+        font-size: 1.9rem;
+        line-height: 1.2;
       }
       .subtitle {
         font-size: 0.9rem;
@@ -215,6 +232,10 @@
         left: 10px;
         padding: 6px 14px;
         font-size: 0.9rem;
+      }
+      footer {
+        font-size: 0.85rem;
+        margin-top: 30px;
       }
     }
   </style>
@@ -239,21 +260,17 @@
   </header>
 
   <section class="cards">
-
-    <!-- Flappy Adwaidh -->
     <div class="card">
       <h2>Flappy Adwaidh</h2>
       <p>Soar high and dodge obstacles in this thrilling clone of the legendary Flappy Bird — simple, fast, and addictively fun!</p>
       <button onclick="window.location.href='https://paarthiban626-art.github.io/moda/moda-bird1.html'">Play Now</button>
     </div>
 
-    <!-- Angry Adwaidh -->
     <div class="card">
       <h2>Angry Adwaidh</h2>
       <p>Launch furious birds to smash the pigs’ defenses! Test your aim and strategy in this fun and addictive slingshot challenge.</p>
       <button onclick="window.location.href='https://angry-moda-bird.netlify.app/'">Play Now</button>
     </div>
-
   </section>
 
   <footer>
