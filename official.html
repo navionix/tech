@@ -106,21 +106,25 @@
       line-height: 1.4em;
     }
 
-    .card button {
+    /* Styled link that looks like your button */
+    .card .btn-link {
+      display: inline-block;
       background: linear-gradient(90deg, #00eaff, #00ffa3);
       color: #001019;
       font-weight: 700;
       padding: 10px 25px;
-      border: none;
       border-radius: 30px;
+      text-decoration: none;
       cursor: pointer;
       font-size: 1rem;
       transition: all 0.3s ease;
     }
 
-    .card button:hover {
+    .card .btn-link:hover,
+    .card .btn-link:focus {
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+      outline: none;
     }
 
     .suggestions-box {
@@ -193,13 +197,15 @@
     <div class="card">
       <h2>Web Games</h2>
       <p>Play instantly from your browser — no installs needed! Dive into fun, fast, and futuristic web-based adventures.</p>
-      <button onclick="window.location.href='https://navionix.github.io/tech/webgames.html'">Play Now</button>
+      <!-- changed to anchor link for robust navigation -->
+      <a class="btn-link" href="https://navionix.github.io/tech/webgames.html" rel="noopener">Play Now</a>
     </div>
 
     <div class="card">
       <h2>Android Games</h2>
       <p>Download thrilling Android games and experience entertainment at your fingertips. Powered by Navionix creativity.</p>
-      <button onclick="window.location.href='https://navionix.github.io/tech/commingsoon.html'">Explore</button>
+      <!-- changed to anchor link for robust navigation -->
+      <a class="btn-link" href="https://navionix.github.io/tech/commingsoon.html" rel="noopener">Explore</a>
     </div>
   </section>
 
@@ -219,6 +225,7 @@
   </footer>
 
   <script>
+    // Google Sheets form submit (unchanged)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyeUTqLfpY49Q7UaX-tigxGEhAafXsiXMjojjTQJn4KLPyVT9Dx4qj3B7fsoy0pA5Zo/exec';
     const form = document.forms['submit-to-google-sheet'];
     const msg = document.getElementById('msg');
@@ -235,9 +242,26 @@
           msg.innerHTML = "❌ Something went wrong. Try again!";
         });
     });
+
+    // Fallback: make sure links navigate (handles rare cases where default navigation might be blocked)
+    document.querySelectorAll('.btn-link').forEach(a => {
+      a.addEventListener('click', function (e) {
+        // if ctrl/meta clicked or target new tab, let it be normal
+        if (e.defaultPrevented) return;
+        // small timeout fallback to force navigation if browser blocks default for any reason
+        setTimeout(() => {
+          if (location.href === location.href) { // noop check; we just force assign
+            try {
+              window.location.href = this.href;
+            } catch (err) {
+              // silent fallback
+              window.location.assign(this.href);
+            }
+          }
+        }, 50);
+      });
+    });
   </script>
 
 </body>
 </html>
-
-
