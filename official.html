@@ -67,7 +67,6 @@
       overflow: hidden;
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
       transition: all 0.4s ease;
-      cursor: pointer;
     }
 
     .card::before {
@@ -199,16 +198,16 @@
   </header>
 
   <section class="cards">
-    <div class="card" onclick="openLink('https://navionix.github.io/tech/webgames.html')">
+    <div class="card">
       <h2>Web Games</h2>
       <p>Play instantly from your browser — no installs needed! Dive into fun, fast, and futuristic web-based adventures.</p>
-      <button>Play Now</button>
+      <button onclick="openLink('https://navionix.github.io/tech/webgames.html')">Play Now</button>
     </div>
 
-    <div class="card" onclick="openLink('https://navionix.github.io/tech/commingsoon.html')">
+    <div class="card">
       <h2>Android Games</h2>
       <p>Download thrilling Android games and experience entertainment at your fingertips. Powered by Navionix creativity.</p>
-      <button>Explore</button>
+      <button onclick="openLink('https://navionix.github.io/tech/commingsoon.html')">Explore</button>
     </div>
   </section>
 
@@ -228,12 +227,12 @@
   </footer>
 
   <script>
-    // Redirection with fade animation
+    // Smooth fade redirect
     function openLink(url) {
-      document.body.style.opacity = "0.6";
+      document.body.style.opacity = "0.5";
       setTimeout(() => {
         window.location.href = url;
-      }, 300);
+      }, 250);
     }
 
     // Google Sheet form submission
